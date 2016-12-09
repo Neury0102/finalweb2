@@ -32,9 +32,14 @@ class CarritoController {
             session.carrito = [:]
         }
 
-        session.carrito[id_producto] = ["producto": p, "cantidad": cantidad]
+        if(p.existencia >= cantidad) {
+            session.carrito[id_producto] = ["producto": p, "cantidad": cantidad]
 
-        flash.message = "Producto ${p.nombre} agregado al carrito!"
+            flash.message = "Producto ${p.nombre} agregado al carrito!"
+        }
+        else {
+            flash.error = "Producto ${p.nombre} No tiene suficiente existencia!"
+        }
         redirect(controller: 'producto', action: 'catalogo')
     }
 
@@ -50,9 +55,21 @@ class CarritoController {
         redirect(action: 'ver')
     }
 
-    def procesar(String direccion) {
-        println direccion
+    def procesar() {
+        Float montoTotal = 0.0
 
-        redirect(action: 'ver')
+        if(!session.carrito) {
+            session.carrito = [:]
+        }
+
+        // calcular monto total
+        for(item in session.carrito) {
+            Producto producto = (Producto)item.value["producto"]
+            Integer cantidad  = (Integer)item.value["cantidad"]
+
+            montoTotal += producto.precio * cantidad
+        }
+
+        forward(controller: 'payPal', action: 'iniciar_pago', params: ['total': montoTotal])
     }
 }

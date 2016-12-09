@@ -26,7 +26,7 @@ class PayPalController {
         def transactions = [transaction]
 
         def payer = paypalService.createPayer(paymentMethod: 'paypal')
-        def cancelUrl = "http://myexampleurl/cancel"
+        def cancelUrl = "http://localhost:8080/carrito/ver"
         def returnUrl = "http://localhost:8080/payPal/realizar_pago"
 
         def redirectUrls = paypalService.createRedirectUrls(cancelUrl: cancelUrl, returnUrl: returnUrl)
@@ -63,22 +63,29 @@ class PayPalController {
 
     def realizar_pago() {
 
-        String clientId = "AWxsZATqfKoYSB0HhBfbr4-_UAtEe6iNRAqolK8nEz5jqEy4TrT-yuqwdvf0Osu2NE_Mq7-1cuyLa2QK"
-        String clientSecret = "ENhbn3HcISNCvAIzlVPWklfSWMvvGXLmGiTMPJj9aDM6065u4WZVNqk92BgqXe9r04KKB0Np9Gdq6OXe"
-        String endpoint = "https://api.sandbox.paypal.com"
-        Map sdkConfig = [:] //= grailsApplication.config.paypal.sdkConfig//[mode: 'live']
-        //sdkConfig['grant-type'] = "client_credentials"
-        sdkConfig[Constants.CLIENT_ID] = clientId
-        sdkConfig[Constants.CLIENT_SECRET] = clientSecret
-        sdkConfig[Constants.ENDPOINT] = endpoint
-        def accessToken = paypalService.getAccessToken(clientId, clientSecret, sdkConfig)
-        def apiContext = paypalService.getAPIContext(accessToken, sdkConfig)
-        //the paypal website will add params to the call to your app. Eg. PayerId, PaymentId
-        // you will use the params to 'execute' the payment
-        def paypalPayment = paypalService.createPaymentExecution(paymentId: params.paymentId, payerId: params.PayerID, apiContext)
+        if(params.paymentId && params.payerId) {
 
-        def map = new JsonSlurper().parseText(paypalPayment.toString())
-        println map
-        redirect url: "http://localhost:8080"
+            String clientId = "AWxsZATqfKoYSB0HhBfbr4-_UAtEe6iNRAqolK8nEz5jqEy4TrT-yuqwdvf0Osu2NE_Mq7-1cuyLa2QK"
+            String clientSecret = "ENhbn3HcISNCvAIzlVPWklfSWMvvGXLmGiTMPJj9aDM6065u4WZVNqk92BgqXe9r04KKB0Np9Gdq6OXe"
+            String endpoint = "https://api.sandbox.paypal.com"
+            Map sdkConfig = [:] //= grailsApplication.config.paypal.sdkConfig//[mode: 'live']
+            //sdkConfig['grant-type'] = "client_credentials"
+            sdkConfig[Constants.CLIENT_ID] = clientId
+            sdkConfig[Constants.CLIENT_SECRET] = clientSecret
+            sdkConfig[Constants.ENDPOINT] = endpoint
+            def accessToken = paypalService.getAccessToken(clientId, clientSecret, sdkConfig)
+            def apiContext = paypalService.getAPIContext(accessToken, sdkConfig)
+            //the paypal website will add params to the call to your app. Eg. PayerId, PaymentId
+            // you will use the params to 'execute' the payment
+            def paypalPayment = paypalService.createPaymentExecution(paymentId: params.paymentId, payerId: params.PayerID, apiContext)
+
+            def map = new JsonSlurper().parseText(paypalPayment.toString())
+            println map
+
+            redirect url: "http://localhost:8080"
+        }
+        else {
+            redirect url: "http://localhost:8080"
+        }
     }
 }
