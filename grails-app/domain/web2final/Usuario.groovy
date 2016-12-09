@@ -10,6 +10,11 @@ class Usuario {
     String departamento
     String tipo_fiscal
 
+    String toString()
+    { "$email" }
+
     static constraints = {
+        email(email:true)
+        password(blank:false, password:true)
     }
 }
