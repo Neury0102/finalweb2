@@ -7,8 +7,7 @@ class FacturaProducto implements Serializable {
     Producto producto
     int cantidad
 
-
-    static FacturaProducto get(long estudianteId, long grupoAsignaturaId){
+    static FacturaProducto get(long estudianteId, long grupoAsignaturaId) {
         find("from FacturaProducto  where factura.id = :estudianteId and producto.id = :grupoAsignaturaId", [estudianteId: estudianteId, grupoAsignaturaId: grupoAsignaturaId])
     }
 

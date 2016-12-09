@@ -12,7 +12,7 @@ class Producto {
         descripcion(blank: false)
         precio(min: 0.01f)
         existencia(min: 0)
-        imagen(blank: false, maxSize: 1024 * 1024 * 16)
+        imagen(nullable: true, blank: true, maxSize: 1024 * 1024 * 16)
     }
 
 }

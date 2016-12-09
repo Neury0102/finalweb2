@@ -23,7 +23,8 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <img class="producto_thumbnail_img"
-                                         src="data:image/jpeg;base64,${prod.imagen.encodeBase64()}"
+                                         src="data:image/jpeg;base64,${prod.imagen?.encodeBase64()}"
+                                         alt="NO HAY IMAGEN... LO SIENTO"
                                          style="height: 100px"
                                     />
                                     <div class="caption">

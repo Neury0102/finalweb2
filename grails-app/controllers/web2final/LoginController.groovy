@@ -5,7 +5,9 @@ import grails.transaction.Transactional
 class LoginController {
 
     def usuarioService
+
     def login(){
+
     }
 
     def autenticar(){
@@ -13,23 +15,21 @@ class LoginController {
         String email = params.get("email")
         String password = params.get("password")
 
-        println "fuck"
-        if(usuarioService.autenticar(email,password)){
-            session.setAttribute("email", Usuario.findByEmail(email))
+        if(usuarioService.autenticar(email, password)) {
+            session.setAttribute("usuario", Usuario.findByEmail(email))
+            session.setAttribute("carrito", [:])
+
             redirect(url:"/")
         }
-        else{
-            redirect(action: "login")
+        else {
             flash.message = "Credenciales no validas"
+            redirect(action: "login")
         }
 
     }
 
-    def cerrar_sesion(){
+    def cerrar_sesion() {
         session.invalidate()
         redirect (action: "login")
     }
-
-
-
 }

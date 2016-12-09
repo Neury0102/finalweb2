@@ -5,8 +5,8 @@ import grails.transaction.Transactional
 @Transactional
 class UsuarioService {
 
-    def crear_admin(){
-        if(Usuario.count() <= 0){
+    def crear_admin() {
+        if(Usuario.count() <= 0) {
             Usuario admin = new Usuario()
             admin.email = "admin@admin.com"
             admin.nombre = "Administrador"
@@ -21,10 +21,10 @@ class UsuarioService {
         }
     }
 
-    def autenticar( email, password){
+    def autenticar( email, password) {
         Usuario u = Usuario.findByEmail(email)
-        u != null && u.password == password
 
+        return u != null && u.password == password
     }
 
     def serviceMethod() {
