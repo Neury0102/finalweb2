@@ -4,7 +4,7 @@ class Factura {
     Boolean despachada;
     Date fecha;
     String comprobante;
-//    String direccion;
+    String direccion
     static hasMany = [productos: Producto]
     static belongsTo = [cliente: Usuario ]
     static constraints = {

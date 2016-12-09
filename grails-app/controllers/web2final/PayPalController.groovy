@@ -6,7 +6,16 @@ import groovy.json.JsonSlurper
 
 class PayPalController {
     def paypalService
-    def index() { }
+    def index() {
+
+        def factura = new Factura(fecha: new Date(),despachada: true,comprobante: "asdfs", cliente: Usuario.findById(1), direccion: "asfdasfd")
+        def producto =  new Producto(nombre: 'sfds', existencia: 40, descripcion: 'asdfasdf', precio: 24.5, imagen: "sdfs".bytes)
+
+        factura.save(failOnError: true)
+        producto.save(failOnError: true)
+        factura.addProducto(producto,2)
+        println factura
+    }
 
     def iniciar_pago() {
 
