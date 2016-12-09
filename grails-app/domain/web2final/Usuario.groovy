@@ -6,10 +6,13 @@ class Usuario {
     String password
     String nombre
     String apellido
-    String tipo
-    String departamento
-    String tipo_fiscal
+    TipoUsuario tipo
 
     static constraints = {
+        nombre(blank: false)
+        apellido(blank: false)
+        email(blank: false, unique: true)
+        password(blank: false)
+        tipo(blank: false)
     }
 }

@@ -16,7 +16,7 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create-drop
+            dbCreate: update
             url: jdbc:h2:tcp://localhost/~/finalweb2
     test:
         dataSource:
@@ -118,6 +118,9 @@ grails:
             maxsize: 1000
     controllers:
         defaultScope: singleton
+        upload:
+            maxFileSize: 2000000
+            maxRequestSize: 2000000
     converters:
         encoding: UTF-8
     views:

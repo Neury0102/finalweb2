@@ -5,9 +5,14 @@ class Producto {
     String descripcion
     Float precio
     Integer existencia
-    static hasMany = [imagenes: Imagen, productos: Producto]
-    static belongsTo = Factura
+    byte[] imagen
+
     static constraints = {
+        nombre(blank: false)
+        descripcion(blank: false)
+        precio(min: 0.01f)
+        existencia(min: 0)
+        imagen(blank: false, maxSize: 1024 * 1024 * 16)
     }
 
 }

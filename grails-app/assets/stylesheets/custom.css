@@ -1,0 +1,8 @@
+.producto_thumbnail_img {
+    height: 200px;
+    max-height: 200px;
+}
+
+a {
+    text-decoration: none !important;
+}
