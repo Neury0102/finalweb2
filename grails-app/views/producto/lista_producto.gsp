@@ -41,10 +41,6 @@
                                                     <i class="fa fa-trash"></i>
                                                 </a>
                                             </g:if>
-                                            <g:else>
-                                                %{-- mostrar boton comprar --}%
-                                                %{-- ojala AJAX --}%
-                                            </g:else>
                                         </p>
                                     </div>
                                 </div>

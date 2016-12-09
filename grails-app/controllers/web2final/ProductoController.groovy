@@ -1,5 +1,6 @@
 package web2final
 
+import grails.converters.JSON
 import org.springframework.web.multipart.MultipartFile
 
 class ProductoController {
@@ -9,6 +10,15 @@ class ProductoController {
 
         model["productos"] = Producto.findAll()
         model["accion"] = "crud"
+
+        render(view: 'lista_producto', model: model)
+    }
+
+    def catalogo() {
+        def model = [:]
+
+        model["productos"] = Producto.findAll()
+        model["accion"] = "catalogo"
 
         render(view: 'lista_producto', model: model)
     }
@@ -84,5 +94,17 @@ class ProductoController {
         }
 
         redirect(action: 'index')
+    }
+
+    def addToCart(Integer id_target, Integer cantidad) {
+
+        def res = new Expando()
+
+        res.target = id_target
+        res.cantidad = cantidad
+
+        print res
+
+        redirect(action: 'catalogo')
     }
 }
