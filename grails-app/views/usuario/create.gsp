@@ -26,7 +26,7 @@
             </g:hasErrors>
             <g:form action="save" enctype="multipart/form-data">
                 <fieldset class="form">
-                    <f:all bean="usuario"/>
+                    <f:all bean="usuario" />
                 </fieldset>
                 <fieldset class="buttons">
                     <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
