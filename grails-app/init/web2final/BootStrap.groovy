@@ -15,10 +15,7 @@ class BootStrap {
         println(producto)
         factura.addProducto(producto,4)
 
-
         println factura.getProductos()
-
-
     }
 
     def destroy = {

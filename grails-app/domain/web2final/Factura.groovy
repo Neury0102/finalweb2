@@ -5,6 +5,7 @@ class Factura {
     Date fecha;
     String comprobante;
     static hasMany = [productos: Producto]
+    static belongsTo = [cliente: Usuario ]
     static constraints = {
     }
     Set<Producto> getProductos(){
@@ -13,6 +14,15 @@ class Factura {
 
     FacturaProducto addProducto(Producto producto, Integer cantidad){
         FacturaProducto.create(this,producto,cantidad)
+    }
+
+    Float total(){
+        def items = FacturaProducto.findByFactura(this)
+        float total = 0
+        for(FacturaProducto fp: items){
+            total+= fp.cantidad*fp.producto.precio
+        }
+        total
     }
 
 
