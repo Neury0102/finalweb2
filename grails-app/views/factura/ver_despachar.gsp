@@ -3,7 +3,6 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <!-- Bootstrap -->
-    <link href="/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css" rel="stylesheet">
     <meta name="layout" content="main" />
     <title>Despachar</title>
 </head>
@@ -60,8 +59,6 @@
     </div>
 
 </div>
-<script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
-<script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
 
 </body>
 </html>

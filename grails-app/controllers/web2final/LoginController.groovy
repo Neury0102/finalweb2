@@ -10,6 +10,14 @@ class LoginController {
 
     }
 
+    def logout() {
+        session.removeAttribute("usuario")
+        session.removeAttribute("direccion")
+        session.removeAttribute("carrito")
+
+        redirect(url: '/')
+    }
+
     def autenticar(){
 
         String email = params.get("email")
