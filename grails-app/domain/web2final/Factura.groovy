@@ -22,7 +22,7 @@ class Factura {
     }
 
     Float total() {
-        def items = FacturaProducto.findByFactura(this)
+        def items = FacturaProducto.findAllByFactura(this)
 
         float total = 0
 

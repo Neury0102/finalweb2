@@ -16,8 +16,8 @@ class ArticuloFactura {
     Float precio
 
     static ArrayList<ArticuloFactura> getArticulosFactura(Factura factura){
-        def listaRet = []
-        def listaFP = FacturaProducto.findByFactura(factura)
+        def listaRet = new ArrayList()
+        def listaFP = FacturaProducto.findAllByFactura(factura)
         for(FacturaProducto fp: listaFP){
             ArticuloFactura af = new ArticuloFactura();
             af.idArticulo = fp.producto.id
@@ -27,6 +27,6 @@ class ArticuloFactura {
             af.precio = af.costoUnidad*af.cantidad
             listaRet.add(af)
         }
-        listaRet
+       return listaRet
     }
 }

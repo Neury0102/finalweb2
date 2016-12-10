@@ -68,7 +68,8 @@ class CarritoController {
         for(item in session.carrito) {
             Producto producto = (Producto)item.value["producto"]
             Integer cantidad  = (Integer)item.value["cantidad"]
-
+            producto.existencia-=cantidad
+            producto.save()
             montoTotal += producto.precio * cantidad
         }
 
@@ -82,7 +83,7 @@ class CarritoController {
 
             Factura f = new Factura()
             f.cliente = (Usuario)session.usuario
-            f.comprobante = "x"
+            f.generarRNC()
             f.despachada = false
             f.fecha = new Date()
             f.direccion = session.direccion

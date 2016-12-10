@@ -28,5 +28,18 @@
                 </div>
             </div>
         </div>
+    <script src="/webjars/jquery/3.1.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/3.3.7-1/js/bootstrap.js"></script>
+    <script>
+        $(document).ready(
+                function () {
+                    $.get( "/reporting/despacho_reporte?factura="+ ${factura.id}, function( data ) {
+                        $( ".result" ).html( data );
+                        alert( "Load was performed." );
+                    });
+                }
+        );
+
+    </script>
     </body>
 </html>
