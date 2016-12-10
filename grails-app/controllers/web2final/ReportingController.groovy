@@ -93,17 +93,17 @@ class ReportingController {
             reportParam.put("invoiceNumber", factura.id)
             reportParam.put("invoiceAmount",factura.total())
             reportParam.put("invoiceDate",new Date())
-            // compiles jrxml
+
             JasperCompileManager.compileReportToFile(reportName);
-            // fills compiled report with parameters and a connection
+
             JasperPrint print = JasperFillManager.fillReport(dotJasperFileName, reportParam, beanColDataSource);
 
             pdfStream = new ByteArrayOutputStream();
 
-            // exports report to pdf
+
             JRExporter exporter = new JRPdfExporter();
             exporter.setParameter(JRExporterParameter.JASPER_PRINT, print);
-            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, pdfStream); // your output goes here
+            exporter.setParameter(JRExporterParameter.OUTPUT_STREAM, pdfStream);
 
             exporter.exportReport();
             //println 'pdfStream = '+pdfStream.size()
