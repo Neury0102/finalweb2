@@ -43,7 +43,7 @@
                             <div class="row">
                                 <div class="col col-md-7">
                                     <img class="thumbnail"
-                                         src="data:image/jpeg;base64,${producto.imagen.encodeBase64()}"
+                                         src="data:image/jpeg;base64,${producto.imagen?.encodeBase64()}"
                                          style="width: 100%"
                                     />
                                 </div>

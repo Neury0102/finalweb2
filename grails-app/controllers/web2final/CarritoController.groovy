@@ -49,7 +49,7 @@ class CarritoController {
             session.carrito = [:]
         }
 
-        flash.message = "Producto <b>removido</b> del carrito"
+        flash.message = "Producto removido del carrito"
         session.carrito.remove(id_producto)
 
         redirect(action: 'ver')
@@ -62,6 +62,8 @@ class CarritoController {
             session.carrito = [:]
         }
 
+        session.direccion = params.direccion
+
         // calcular monto total
         for(item in session.carrito) {
             Producto producto = (Producto)item.value["producto"]
@@ -71,5 +73,36 @@ class CarritoController {
         }
 
         forward(controller: 'payPal', action: 'iniciar_pago', params: ['total': montoTotal])
+    }
+
+    def recibo_compra() {
+        if(params.correcto) {
+            // crear facturas
+            Map carrito = (Map)session.carrito
+
+            Factura f = new Factura()
+            f.cliente = (Usuario)session.usuario
+            f.comprobante = "x"
+            f.despachada = false
+            f.fecha = new Date()
+            f.direccion = session.direccion
+            f.save(flush: true)
+
+            for(item in carrito) {
+                Producto p = (Producto)item.value["producto"]
+                Integer c  = (Integer)item.value["cantidad"]
+
+                f.addProducto(p, c)
+            }
+            session.removeAttribute("direccion")
+            session.removeAttribute("carrito")
+
+            // mandar a buscar reportes
+            render(view: 'recibo', model: ["factura": f, "productos": f.productos])
+            // forward(controller: 'producto', action: 'catalogo', params: ['correcto':true])
+        }
+        else {
+            redirect(url: "/")
+        }
     }
 }
