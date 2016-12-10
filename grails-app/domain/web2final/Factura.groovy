@@ -27,4 +27,11 @@ class Factura {
     }
 
 
+    String generarRNC(){
+        def result = "A0100100102" +  String.format("%08d", Factura.count());
+        this.comprobante = result
+
+    }
+
+
 }

@@ -145,7 +145,7 @@
 				<text><![CDATA[Correo Cliente :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="263" y="93" width="88" height="20"/>
+				<reportElement x="263" y="93" width="160" height="20"/>
 				<textElement/>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{comprobante}]]></textFieldExpression>
 			</textField>
