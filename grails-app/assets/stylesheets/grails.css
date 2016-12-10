@@ -43,10 +43,10 @@ pre {
     width: 40px;
 
 }
-.navbar-default, .navbar-static-top {
-    background-color: #4D8618;
-    border: 0px;
-}
+/*.navbar-default, .navbar-static-top {*/
+    /*background-color: #4D8618;*/
+    /*border: 0px;*/
+/*}*/
 a.navbar-brand {
     color: white !important;
     font-size: 19px !important;
@@ -59,7 +59,7 @@ a.navbar-brand {
     color: white !important;
 }
 .navbar-nav>li>a:hover {
-    background-color: #db4800 !important;
+    background-color: #2e6da4 !important;
     color: white !important;
 }
 .navbar-nav>li>a {
@@ -69,7 +69,7 @@ a.navbar-brand {
     background-color: white;
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-    background-color: #db4800;
+    background-color: #2e6da4;
 }
 
 @media (min-width: 768px) {
@@ -386,7 +386,7 @@ a {
 }
 
 a:hover {
-    color: #db4800;
+    color: #2e6da4;
     text-decoration: none
 }
 
@@ -792,7 +792,7 @@ ul.nav-sidebar li a {
 
 ul.nav-sidebar li.active a:hover, ul.nav-sidebar li a:hover {
     color: white;
-    background-color: #db4800;
+    background-color: #999999;
 }
 
 ul.nav-sidebar li.active a {

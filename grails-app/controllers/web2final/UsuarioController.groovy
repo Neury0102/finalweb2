@@ -37,6 +37,24 @@ class UsuarioController {
 
         usuario.save flush:true
 
+        if(usuario.tipo in [TipoUsuario.CLIENTE_CONSUMIDOR_FINAL, TipoUsuario.CLIENTE_EMPRESA, TipoUsuario.CLIENTE_PERSONA_FISICA]) {
+            String bodyText = ""
+
+            bodyText  = "Gracias por registrarte en Saleta's Store!\n\n"
+            bodyText += "Puedes entrar a la tienda en el enlace http://localhost:8080\n"
+            bodyText += "\tUsuario: ${usuario.email}\n"
+            bodyText += "\tPassword: ${usuario.password}\n\n"
+            bodyText += "Un saludo."
+
+            sendMail {
+                multipart false
+                subject "Credenciales Saleta's Market"
+                text bodyText
+                to usuario.email
+                from "saletasmarket@gmail.com"
+            }
+        }
+
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'usuario.label', default: 'Usuario'), usuario.id])

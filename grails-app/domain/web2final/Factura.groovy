@@ -5,24 +5,31 @@ class Factura {
     Date fecha;
     String comprobante;
     String direccion
+
     static hasMany = [productos: Producto]
-    static belongsTo = [cliente: Usuario ]
+
+    static belongsTo = [cliente: Usuario]
+
     static constraints = {
     }
-    Set<Producto> getProductos(){
+
+    Set<Producto> getProductos() {
         FacturaProducto.findAllByFactura(this).collect {it.producto} as Set
     }
 
-    FacturaProducto addProducto(Producto producto, Integer cantidad){
+    FacturaProducto addProducto(Producto producto, Integer cantidad) {
         FacturaProducto.create(this,producto,cantidad)
     }
 
-    Float total(){
+    Float total() {
         def items = FacturaProducto.findByFactura(this)
+
         float total = 0
+
         for(FacturaProducto fp: items){
             total+= fp.cantidad*fp.producto.precio
         }
+
         total
     }
 

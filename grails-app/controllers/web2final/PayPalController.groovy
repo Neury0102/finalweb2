@@ -71,8 +71,7 @@ class PayPalController {
     }
 
     def realizar_pago() {
-
-        if(params.paymentId && params.payerId) {
+        if(params.paymentId && params.PayerID) {
 
             String clientId = "AWxsZATqfKoYSB0HhBfbr4-_UAtEe6iNRAqolK8nEz5jqEy4TrT-yuqwdvf0Osu2NE_Mq7-1cuyLa2QK"
             String clientSecret = "ENhbn3HcISNCvAIzlVPWklfSWMvvGXLmGiTMPJj9aDM6065u4WZVNqk92BgqXe9r04KKB0Np9Gdq6OXe"
@@ -91,7 +90,7 @@ class PayPalController {
             def map = new JsonSlurper().parseText(paypalPayment.toString())
             println map
 
-            redirect url: "http://localhost:8080"
+            forward(controller: 'carrito', action: 'recibo_compra', params: ['correcto':true])
         }
         else {
             redirect url: "http://localhost:8080"
