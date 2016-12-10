@@ -12,7 +12,7 @@
                     <br>
                     <div class="row">
                         <div class="col col-md-2">
-                            <g:if test="${session.usuario.tipo in [TipoUsuario.CLIENTE_CONSUMIDOR_FINAL, TipoUsuario.CLIENTE_EMPRESA, TipoUsuario.CLIENTE_PERSONA_FISICA]}">
+                            <g:if test="${session.usuario && session.usuario.tipo in [TipoUsuario.CLIENTE_CONSUMIDOR_FINAL, TipoUsuario.CLIENTE_EMPRESA, TipoUsuario.CLIENTE_PERSONA_FISICA]}">
                                 <a href="/producto/catalogo" class="btn btn-primary btn-large">Ver lista</a>
                             </g:if>
                             <g:else>
